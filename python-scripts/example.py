@@ -18,4 +18,4 @@ camera.vflip = True
 camera.preview
 
 sleep(2)
-camera.capture([])
+camera.capture("foo.jpg")
