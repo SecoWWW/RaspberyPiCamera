@@ -20,5 +20,9 @@ camera.hflip = True
 camera.vflip = True
 
 sleep(2)
+print("still-pictures/"+string+".jpg")
+os.chdir("still-pictures")
+# print(os.getcwd())
 camera.capture(string+".jpg")
-print(string+".jpg")
+
+# camera.capture("still-images/"+string+".jpg")
