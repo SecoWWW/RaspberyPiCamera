@@ -10,19 +10,14 @@
 <?php echo date('Y-m-d H:i:s'); ?>
 </p>
 <?php 
-
-
-$output = shell_exec("sudo -u www-data python-scripts/ll-still-pictures");
-echo "<pre>$output</pre>";
-
-
-
-
+$picture = shell_exec("sudo -u www-data python-scripts/ll-still-picture.py");
 ?>
 <input type="submit" name="still-picture" class="button" value="still-picture" />
 
-<img src=<?php echo "$output"?> alt="picture from camera">
-
+<img src=<?php echo "$picture"?> alt="picture from camera">
+<?php
+echo "<pre>$picture</pre>";
+?>
 
 
 
