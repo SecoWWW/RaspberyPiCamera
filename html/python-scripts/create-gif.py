@@ -17,25 +17,26 @@ frames = 20
 
 def time_delay():
     # function for time delay
-    print(datetime.datetime.year)
-    print(datetime.datetime.month)
-    print(datetime.datetime.day)
-    print(datetime.datetime.hour)
-    print(datetime.datetime.minute)
-    right_now = datetime.datetime(datetime.datetime.year,datetime.datetime.month,datetime.datetime.day,datetime.datetime.hour,datetime.datetime.minute)
+    now = datetime.datetime.now()
+        
+    right_now = datetime.datetime(now.year,now.month,now.day,now.hour,now.minute,now.second)
     when = datetime.datetime(year,month,day,hour,minute)    
     difference = (when-right_now).total_seconds()
     print(difference)
+    if difference > 0:
+        time.sleep(difference)
 
 def gif():
+
+    if(now == False):
+        time_delay()        
+
     camera = PiCamera()
     camera.resolution = (426,240)
     camera.hflip = True
     camera.vflip = True
     
-    if(now == False):
-        time_delay()
-        return
+    
 
     time.sleep(2)
 
