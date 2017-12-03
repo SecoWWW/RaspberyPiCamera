@@ -22,6 +22,7 @@
 <?php
 echo "<pre>$picture</pre>";
 ?>
+<hr>
 <p>
 	<form class="gif-form" action="">
 		Year:</br>
@@ -58,11 +59,29 @@ echo "<pre>$picture</pre>";
 		$gif .= " -delay " . $_GET['delay'] . " -frames " . $_GET['length'];	
 		exec($gif, $result);
 		print_r($result);
-	}
-	echo $gif;
+	}	
 	
 ?>
+<hr>
+<p>	
+	Custom light</br>
+	<form action="./customLed.php" method="get">
+		Red <0,255>:</br>
+		<input type="text" class='red' name="red" value=""></br>
+		Green <0,255>:</br>
+		<input type="text" class='green' name="green" value=""></br>	
+		Blue <0,255>:</br>
+		<input type="text" class='blue' name="blue" value=""></br>		
+		<input type="submit" name="custom-light" value="custom-light">
+	</form>
+</p>
 
+
+<p>
+	<input type="submit" name="lights-on" class="button" value="lights-on" />
+	<input type="submit" name="lights-off" class="button" value="lights-off" />
+</p>
+<hr>
 
 <script src="scripts/jquery-3.2.1.min.js"></script>
 <script>
@@ -74,7 +93,9 @@ $(document).ready(function(){
 	$('input.day').val(date.getDate());
 	$('input.hour').val(date.getHours());
 	$('input.minute').val(date.getMinutes());
-	
+	$('input.red').val(255)
+	$('input.green').val(255)
+	$('input.blue').val(255)
 	
 	$('.button').click(function(){
 		console.log("button pressed")
@@ -95,9 +116,22 @@ $(document).ready(function(){
 			console.log('show all gifs');
 			window.open('./allgifs.php');
 		}
+		if(click == 'lights-on'){
+			var ajaxurl = 'light-on.php',
+			data = {'action': click};
+			$.post(ajaxurl, data, function(response){
+				alert("lights are on!!");
+			});
+		}
+		if(click == 'lights-off'){
+			var ajaxurl = 'light-off.php',
+			data = {'action': click};
+			$.post(ajaxurl, data, function(response){
+				alert("lights are off!!");
+			});
+		}
+
 	});
-	
-	$('.gif-form').submit
 	
 });
 </script>
