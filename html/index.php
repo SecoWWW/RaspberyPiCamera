@@ -82,6 +82,12 @@ echo "<pre>$picture</pre>";
 	<input type="submit" name="lights-off" class="button" value="lights-off" />
 </p>
 <hr>
+<p>
+	<input type="submit" name="stream-start" class="button" value="stream-start" />
+	<input type="submit" name="stream-stop" class="button" value="stream-stop" />
+	<p>Stream je na porte 9090/stream</p>
+</p>
+
 
 <script src="scripts/jquery-3.2.1.min.js"></script>
 <script>
@@ -109,11 +115,9 @@ $(document).ready(function(){
 			});
 		}
 		if(click == 'show-pictures'){
-			console.log('show all pictures');
 			window.open('./allpictures.php');
 		}
 		if(click == 'show-gifs'){
-			console.log('show all gifs');
 			window.open('./allgifs.php');
 		}
 		if(click == 'lights-on'){
@@ -130,6 +134,20 @@ $(document).ready(function(){
 				alert("lights are off!!");
 			});
 		}
+		if(click == 'stream-start'){
+			var ajaxurl = 'stream-start.php',
+			data = {'action': click};
+			$.post(ajaxurl, data, function(response){
+				alert("stream has started, please use the correct IP:port/stream");
+			});
+		}
+		if(click == 'stream-stop'){
+			var ajaxurl = 'stream-stop.php',
+			data = {'action': click};
+			$.post(ajaxurl, data, function(response){
+				alert("stream stoped :(");
+			});
+		}		
 
 	});
 	
